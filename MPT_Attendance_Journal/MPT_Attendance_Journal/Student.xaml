@@ -1,0 +1,75 @@
+﻿<Window x:Class="MPT_Attendance_Journal.Student"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MPT_Attendance_Journal"
+        mc:Ignorable="d"
+        Title="Student" Height="1080" Width="1920" MinWidth="1600" MinHeight="800" WindowState="Maximized" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Window.Resources>
+        <local:JournalDB x:Key="journalDB"/>
+        <CollectionViewSource x:Key="lesson_mptViewSource" Source="{Binding lesson_mpt, Source={StaticResource journalDB}}"/>
+        <CollectionViewSource x:Key="attendanceViewSource" Source="{Binding attendance, Source={StaticResource journalDB}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource lesson_mptViewSource}">
+        <Image HorizontalAlignment="Left" Height="1049" VerticalAlignment="Top" Width="1912" Stretch="Fill" Source="AdminBackGround.jpg" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="lesson_mptDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource lesson_mptViewSource}}" Margin="578,0,0,386" RowDetailsVisibilityMode="VisibleWhenSelected" Height="526" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="772" IsManipulationEnabled="True" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="id_lesson_mptColumn" Binding="{Binding id_lesson_mpt}" Header="id lesson mpt" Width="SizeToHeader" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="disciplineColumn" Binding="{Binding discipline}" Header="Дисциплина" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="date_of_lessonColumn" Header="Дата проведения" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding date_of_lesson, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="lesson_orderColumn" Binding="{Binding lesson_order}" Header="Пара по счёту" Width="SizeToHeader"/>
+                <DataGridTemplateColumn Header="Преподаватель" x:Name="teacher_Column" Width="300">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock  x:Name="id_user_mptComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto"  Text="{Binding surname_user}"  Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="100"  />
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Группа" x:Name="group_Column" Width="100" Visibility="Collapsed">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectedIndex="-1" x:Name="id_group_mptComboBox" Grid.Column="1"     HorizontalAlignment="Left" Height="Auto"  Text="{Binding group_name}" SelectedValuePath= "id_group_mpt"  ItemsSource="{Binding group_mpt, Source={StaticResource journalDB}}" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120"  DisplayMemberPath="group_name">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel/>
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+
+                            </ComboBox>
+
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <Button Name="Attend" Content="Отметиться на паре" Click="Attend_Click"></Button>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <TextBox x:Name="Login_Copy" Margin="777,0,0,917" TextWrapping="NoWrap" Text="Пары" Opacity="0.75"  BorderThickness="0" Background="White" FontSize="42" TextAlignment="Center" HorizontalAlignment="Left" Width="408" Height="59" VerticalAlignment="Bottom" />
+        <DataGrid x:Name="attendanceDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource attendanceViewSource}}" Margin="720,1430,792,-581" RowDetailsVisibilityMode="VisibleWhenSelected" Visibility="Collapsed">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="id_attendancetColumn" Binding="{Binding id_attendancet}" Header="id attendancet" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="statusColumn" Binding="{Binding status}" Header="status" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="lesson_idColumn" Binding="{Binding lesson_id}" Header="lesson id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="user_idColumn" Binding="{Binding user_id}" Header="user id" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Border CornerRadius="13" BorderBrush="Black" BorderThickness="3" UseLayoutRounding="True" VerticalAlignment="Bottom" Height="81" Margin="1630,0,0,938" Background="#FF96DFE8" HorizontalAlignment="Left" Width="228">
+            <Button Name="LogOut" HorizontalAlignment="Left" Height="81" Margin="7,-3,0,-3" Content="Выйти"  VerticalAlignment="Top" Width="208" Opacity="0.75"  BorderThickness="0" Background="Transparent" FontSize="42" Click="LogOut_Click" />
+        </Border>
+
+    </Grid>
+</Window>

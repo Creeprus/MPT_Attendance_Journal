@@ -1,0 +1,60 @@
+﻿<Window x:Class="MPT_Attendance_Journal.Teacher"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MPT_Attendance_Journal"
+        mc:Ignorable="d"
+        Title="Teacher" Height="1080" Width="1920" MinWidth="1600" MinHeight="800" Loaded="Window_Loaded" WindowState="Maximized" Closed="Window_Closed">
+    <Window.Resources>
+        <local:JournalDB x:Key="journalDB"/>
+        <CollectionViewSource x:Key="attendanceViewSource" Source="{Binding attendance, Source={StaticResource journalDB}}"/>
+        <CollectionViewSource x:Key="lesson_mptViewSource" Source="{Binding lesson_mpt, Source={StaticResource journalDB}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource attendanceViewSource}">
+        <Image Source="/AdminBackGround.jpg" HorizontalAlignment="Left" Height="1080" VerticalAlignment="Top" Width="1920" Stretch="Fill"/>
+        <TextBox x:Name="Login_Copy" Margin="319,0,0,862" TextWrapping="NoWrap" Text="Ваши Пары" Opacity="0.75"  BorderThickness="0" Background="White" FontSize="42" TextAlignment="Center" Height="59" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="408" />
+        <DataGrid x:Name="attendanceDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="950,0,0,472" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True" Height="200" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="400">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="id_attendancetColumn" Binding="{Binding id_attendancet}" Header="id attendancet" Width="SizeToHeader" Visibility="Collapsed"/>
+
+                <DataGridTextColumn x:Name="lesson_idColumn" Binding="{Binding discipline}" Header="Пара" Width="SizeToHeader" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="user_idColumn" Binding="{Binding surname_user}" Header="Студент" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="statusColumn" Binding="{Binding status}" Header="Присутствие на паре" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="lesson_mptDataGrid_Copy" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource lesson_mptViewSource}}" Margin="102,377,0,146" RowDetailsVisibilityMode="VisibleWhenSelected" HorizontalAlignment="Left" Width="772" IsManipulationEnabled="True" IsReadOnly="True" SelectionChanged="lesson_mptDataGrid_Copy_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="id_lesson_mptColumn1" Binding="{Binding id_lesson_mpt}" Header="id lesson mpt" Width="SizeToHeader" Visibility="Collapsed"/>
+                <DataGridTextColumn x:Name="disciplineColumn1" Binding="{Binding discipline}" Header="Дисциплина" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="date_of_lessonColumn1" Header="Дата проведения" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding date_of_lesson, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="lesson_orderColumn1" Binding="{Binding lesson_order}" Header="Пара по счёту" Width="SizeToHeader"/>
+                <DataGridTemplateColumn Header="Преподаватель" x:Name="teacher_Column" Width="300" Visibility="Collapsed">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Группа" x:Name="group_Column" Width="100" Binding="{Binding group_name}">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <Border CornerRadius="13" BorderBrush="Black" BorderThickness="3" UseLayoutRounding="True" VerticalAlignment="Bottom" Height="81" Margin="1654,0,0,938" Background="#FF96DFE8" HorizontalAlignment="Left" Width="228">
+            <Button Name="LogOut" HorizontalAlignment="Left" Height="81" Margin="7,-3,0,-3" Content="Выйти"  VerticalAlignment="Top" Width="208" Opacity="0.75"  BorderThickness="0" Background="Transparent" FontSize="42" Click="LogOut_Click" />
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,15 @@
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\bin\Release\MPT_Attendance_Journal.exe.config
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\bin\Release\MPT_Attendance_Journal.exe
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\bin\Release\MPT_Attendance_Journal.pdb
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MainWindow.g.cs
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\App.g.cs
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MPT_Attendance_Journal_Content.g.cs
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MPT_Attendance_Journal_MarkupCompile.cache
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MPT_Attendance_Journal_MarkupCompile.lref
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MainWindow.baml
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MPT_Attendance_Journal.g.resources
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MPT_Attendance_Journal.Properties.Resources.resources
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MPT_Attendance_Journal.csproj.GenerateResource.cache
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MPT_Attendance_Journal.csproj.CoreCompileInputs.cache
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MPT_Attendance_Journal.exe
+C:\Users\levak\source\repos\MPT_Attendance_Journal\MPT_Attendance_Journal\obj\Release\MPT_Attendance_Journal.pdb
